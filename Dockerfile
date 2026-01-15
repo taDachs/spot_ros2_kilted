@@ -1,4 +1,4 @@
-ARG ROS_DISTRO_VERSION="kilted"
+ARG ROS_DISTRO_VERSION="jazzy"
 
 # base image
 FROM ros:${ROS_DISTRO_VERSION}-ros-base AS base
@@ -145,17 +145,18 @@ RUN --mount=type=ssh \
   cd /ros_ws/src
 
   git clone https://github.com/bdaiinstitute/bosdyn_msgs.git
-  git clone https://github.com/tadachs/proto2ros.git
+  #git clone https://github.com/bdaiinstitute/proto2ros.git
+  #git clone https://github.com/bdaiinstitute/spot_ros2.git
   git clone https://github.com/tadachs/spot_ros2.git --branch kilted
-  git clone https://github.com/bdaiinstitute/synchros2.git  # needs current version of synchros2 for kilted support
+  #git clone https://github.com/bdaiinstitute/synchros2.git  # needs current version of synchros2 for kilted support
   cd spot_ros2
   git submodule init
   git submodule update
   cd ..
 
-  touch bosdyn_msgs/proto2ros/COLCON_IGNORE  # have to use my version and it is a submodule
-  touch proto2ros/proto2ros_tests/COLCON_IGNORE  # just wastes a lot of time
-  touch spot_ros2/ros_utilities/COLCON_IGNORE
+  #touch bosdyn_msgs/proto2ros/COLCON_IGNORE  # have to use my version and it is a submodule
+  #touch proto2ros/proto2ros_tests/COLCON_IGNORE  # just wastes a lot of time
+  #touch spot_ros2/ros_utilities/COLCON_IGNORE
 
   cd ..
   apt update
